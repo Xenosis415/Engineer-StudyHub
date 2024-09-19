@@ -1,0 +1,12 @@
+/* Remove the background color for the selected menu item */
+.ant-menu-item-selected {
+  background-color: transparent !important;
+  color: #2baffc; /* Removes the background color */
+  border-bottom: 5px solid #2baffc;
+}
+
+/* Optional: Change the text color for the selected item */
+.ant-menu-item-selected a {
+  color: inherit !important;
+  color: #2baffc !important; /* Keeps the text color the same as other items */
+}
