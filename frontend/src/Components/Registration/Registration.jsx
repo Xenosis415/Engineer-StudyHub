@@ -1,43 +1,32 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Checkbox,
-  Form,
-  Input,
-  Typography,
-  Space,
-  Select,
-  notification,
-} from "antd";
+import { Button, Form, Input, Typography, notification, Select } from "antd";
 import axios from "axios";
 import { Link } from "react-router-dom"; // Updated import
-import "../../styles/LoginPage.css";
+import "./RegistrationPage.css"; // Ensure this CSS file includes the styles below
 
 const { Title } = Typography;
 const { Option } = Select;
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
 
   const onFinish = async (values) => {
     setLoading(true);
     try {
       // Make the POST request to the backend
-      const response = await axios.post("http://localhost:5000/api/login", {
+      await axios.post("http://localhost:5000/api/signup", {
         email: values.email,
         password: values.password,
         role: values.role,
       });
-      // Store the JWT token
-      localStorage.setItem("token", response.data.token);
       // Notify the user of success
-      notification.success({ message: "Login successful" });
+      notification.success({ message: "Registration successful" });
       // Redirect or update UI as needed
-      // For example, navigate to a dashboard:
-      // window.location.href = '/dashboard';
+      // For example, navigate to the login page:
+      // window.location.href = '/login';
     } catch (error) {
       notification.error({
-        message: "Login failed",
+        message: "Registration failed",
         description: error.response?.data?.message || "An error occurred",
       });
     }
@@ -45,26 +34,26 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-card">
-        <div className="login-image">
+    <div className="register-container">
+      <div className="register-card">
+        <div className="register-image">
           <img
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-            alt="login"
+            alt="register"
             className="rounded-image"
           />
         </div>
-        <div className="login-form">
+        <div className="register-form">
           <div className="logo-container">
             <Title level={2} className="logo-text">
               Engineer StudyHub
             </Title>
           </div>
           <Title level={5} className="form-title">
-            Sign into your account
+            Create an account
           </Title>
           <Form
-            name="login"
+            name="register"
             layout="vertical"
             initialValues={{ remember: true }}
             onFinish={onFinish}
@@ -92,39 +81,31 @@ const LoginPage = () => {
               label="Password"
               rules={[
                 { required: true, message: "Please input your password!" },
+                {
+                  min: 6,
+                  message: "Password must be at least 6 characters long",
+                },
               ]}
             >
               <Input.Password size="large" />
-            </Form.Item>
-            <Form.Item
-              name="remember"
-              valuePropName="checked"
-              wrapperCol={{ span: 24 }}
-            >
-              <Checkbox>Remember me</Checkbox>
             </Form.Item>
             <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 size="large"
-                className="login-button"
+                className="register-button"
                 loading={loading}
               >
-                Login
+                Register
               </Button>
             </Form.Item>
-            <Space direction="vertical" size="small">
-              <Link to="#" className="link">
-                Forgot password?
+            <p className="login-text">
+              Already have an account?{" "}
+              <Link to="/login" className="link">
+                Login here
               </Link>
-              <p className="signup-text">
-                Don't have an account?{" "}
-                <Link to="/register" className="link">
-                  Register here
-                </Link>
-              </p>
-            </Space>
+            </p>
           </Form>
         </div>
       </div>
@@ -132,4 +113,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
