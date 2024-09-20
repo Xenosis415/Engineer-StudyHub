@@ -9,6 +9,9 @@ function Home() {
         the one stop for academic solution for every students of university.
       </p>
       <p>Lorem ipsum dolor sit amet.</p>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque, harum.
+      </p>
     </div>
   );
 }
