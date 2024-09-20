@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Input, Typography, notification, Select } from "antd";
 import axios from "axios";
-import { Link } from "react-router-dom"; // Updated import
-import "./RegistrationPage.css"; // Ensure this CSS file includes the styles below
+import { Link } from "react-router-dom";
+import "./RegistrationPage.css";
 
 const { Title } = Typography;
 const { Option } = Select;

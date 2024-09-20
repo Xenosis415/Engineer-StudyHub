@@ -20,12 +20,12 @@ function App() {
             <Route path="register" element={<RegisterPage />} />{" "}
             {/* Added registration route */}
             <Route path="learning-material" element={<LearningMaterial />} />
-            <Route path="job-portal" element={<JobPortalPage />} />
+            {/* <Route path="job-portal" element={<JobPortalPage />} /> */}
             <Route
               path="interview-preparation"
               element={<div>Interview Preparation Page</div>}
             />
-            <Route path="*" element={<div>404 Page Not Found</div>} />{" "}
+            <Route path="*" element={<JobPortalPage />} />{" "}
             {/* Added 404 route */}
           </Route>
         </Routes>
