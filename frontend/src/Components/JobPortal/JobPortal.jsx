@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, Button, Card } from "antd";
 import "./JobPortal.css"; // Ensure this CSS file includes the styles below
+import { Link, Outlet, Route, useNavigate } from "react-router-dom";
 
 const { Search } = Input;
 
@@ -52,6 +53,7 @@ const cardData = [
 ];
 
 function JobPortal() {
+  const navigate = useNavigate();
   return (
     <div className="job-portal">
       <div className="background-logos">
@@ -96,7 +98,15 @@ function JobPortal() {
                 </div>
               ))}
             </div>
-            <Button type="primary">Explore More</Button>
+            <Button
+              type="primary"
+              onClick={() => {
+                //<Route path="JobListing" element={<JobListing />} />;
+                navigate("/JobListing");
+              }}
+            >
+              Explore More
+            </Button>
           </Card>
         ))}
       </main>
