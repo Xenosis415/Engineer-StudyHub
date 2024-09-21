@@ -1,6 +1,7 @@
 import React from "react";
 import { Input, Button, Card } from "antd";
 import "./JobPortal.css"; // Ensure this CSS file includes the styles below
+import FeaturedJobs from "./Featuredjobs";
 import { Link, Outlet, Route, useNavigate } from "react-router-dom";
 
 const { Search } = Input;
@@ -111,6 +112,7 @@ function JobPortal() {
         ))}
       </main>
       <div className="thread-animation"></div>
+      <FeaturedJobs/>
     </div>
   );
 }
