@@ -1,19 +1,10 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme, Button } from "antd";
+import { Layout, Menu, theme, Button } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./MainLayout.css";
 
 const { Header, Content } = Layout;
-
-// Route mappings for breadcrumbs
-const breadcrumbNameMap = {
-  "/": "Home",
-  "/login": "Login",
-  "/learning-material": "Learning Material",
-  "/JobPortal": "JobPortal",
-  "/interview-preparation": "Interview Preparation",
-};
 
 const MainLayout = () => {
   const {
@@ -22,19 +13,8 @@ const MainLayout = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const pathSnippets = location.pathname.split("/").filter((i) => i);
 
-  const breadcrumbItems = [
-    <Breadcrumb.Item key="home">
-      <Link to="/">Home</Link>
-    </Breadcrumb.Item>,
-    ...pathSnippets.map((_, index) => {
-      const url = `/${pathSnippets.slice(0, index + 1).join("/")}`;
-      return (
-        <Breadcrumb.Item key={url}>{breadcrumbNameMap[url]}</Breadcrumb.Item>
-      );
-    }),
-  ];
+  
 
   const currentPath = location.pathname;
   let activeKey = "1";
@@ -68,18 +48,11 @@ const MainLayout = () => {
         </Link>
       ),
     },
-    // {
-    //   key: "4",
-    //   label: (
-    //     <Link to="/interview-preparation" className="menu-link">
-    //       Interview Preparation
-    //     </Link>
-    //   ),
-    // },
+    
   ];
 
   return (
-    <Layout>
+    <Layout style={{margin: 0}}>
       <Header
         style={{
           display: "flex",
@@ -140,19 +113,12 @@ const MainLayout = () => {
           Join Us
         </Button>
       </Header>
-      <Layout>
+      <Layout style={{margin:0}}>
         <Layout
           style={{
             padding: "0 24px 24px",
           }}
         >
-          <Breadcrumb
-            style={{
-              margin: "16px 0",
-            }}
-          >
-            {breadcrumbItems}
-          </Breadcrumb>
           <Content
             style={{
               padding: 24,
