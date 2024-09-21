@@ -1,0 +1,88 @@
+@keyframes gradientAnimation {
+    0% {
+      background: linear-gradient(
+        135deg,
+        #4a90e2,
+        #50e3c2
+      ); 
+    }
+    50% {
+      background: linear-gradient(
+        135deg,
+        #50e3c2,
+        #4a90e2
+      );
+    }
+    100% {
+      background: linear-gradient(
+        135deg,
+        #4a90e2,
+        #50e3c2
+      );
+    }
+  }
+/* 
+.job-details-card {
+    max-width: 400px; 
+    margin: 0 auto; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  .job-details-card img {
+    max-width: 100px; 
+    margin-top: 20px;
+  }
+  
+  .job-details-card p {
+    margin: 10px 0;
+    font-size: 1rem;
+  } */
+
+
+
+
+.job-container{
+    display: flex;
+    justify-content: flex-start; /* Aligns items to the left */
+    align-items: flex-start; /* Ensures they are aligned at the top */
+    padding: 20px; 
+}
+
+.job-grid{
+    display: flex;
+    flex-wrap: wrap;
+    
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    margin-top: 30px;
+    padding: 0 50px; 
+}
+
+.job-info {
+    text-align: left;
+  }
+
+  .package, .location, .job-title {
+    margin: 5px 0;
+  }
+
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 25px 0;
+  }
+
+  .tag {
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 0.8em;
+  }
+
+
+ 
+  
