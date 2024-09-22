@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Carousel, Typography, Row, Col } from "antd";
 import "./Home.css";
-
+import Girl from "../../assets/images/Girl.png"
 const { Title, Paragraph } = Typography;
 
 const HeroSlider = () => {
@@ -59,9 +59,10 @@ const HeroSlider = () => {
           <Col span={12}>
             <div className="right-section">
               <img
-                src="path-to-your-student-image.png"
+                src={Girl}
                 alt="Student"
                 className="student-image"
+                style={{ height: "100%", maxWidth:600 }}
               />
             </div>
           </Col>

@@ -8,24 +8,19 @@ import {
   YoutubeOutlined,
 } from "@ant-design/icons";
 import "./Footer.css"; // You can style further in this file
+import logo from "../../assets/images/logo.png";
 
 const { Footer } = Layout;
 const { Title, Text, Link } = Typography;
+
 
 const FooterComponent = () => {
   return (
     <Footer
       style={{ backgroundColor: "#000", color: "#fff", padding: "40px 50px" }}
     >
-      <div>
-        <h1
-          style={{
-            fontSize: "50px",
-            textAlign: "center",
-          }}
-        >
-          Engineer <span style={{ color: "#ff5000" }}>StudyHub</span>
-        </h1>
+      <div className="footer-logo flex" style={{width:"100%",}}>
+        <img src={logo} alt="logo" style={{ width: 350,paddingBottom:"35px", }} />
       </div>
       <Row gutter={[32, 32]} justify="space-between">
         {/* About Us Section */}

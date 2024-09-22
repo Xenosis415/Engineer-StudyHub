@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, theme, Button } from "antd";
+import { Layout, Menu, Button } from "antd";
 import {
   DownOutlined,
   HomeOutlined,
@@ -9,6 +9,7 @@ import {
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./MainLayout.css";
 import FooterComponent from "../Components/Footer/FooterComponent";
+import logo from "../assets/images/logo.png";
 
 const { Header, Content } = Layout;
 
@@ -55,79 +56,98 @@ const MainLayout = () => {
         </Link>
       ),
     },
-   {
-  key: "4",
-  label: (
-    <Link to="/DevelopersHub" className="menu-link">
-      Developers Hub
-    </Link>
-  ),
-},
-{
-  key: "5",
-  label: (
-    <Link to="/Dashboard" className="menu-link">
-      Dashboard
-    </Link>
-  ),
-},
-{
-  key: "6",
-  label: (
-    <Link to="/AboutUs" className="menu-link">
-      About us
-    </Link>
-  ),
-},
-{
-  key: "7",
-  label: (
-    <Link to="/ContactUs" className="menu-link">
-      Contact us
-    </Link>
-  ),
-},
-{
-  key: "8",
-  label: (
-    <Link to="/FAQs" className="menu-link">
-      FAQs
-    </Link>
-  ),
-},
+    {
+      key: "4",
+      label: (
+        <Link to="/DevelopersHub" className="menu-link">
+          Developers Hub
+        </Link>
+      ),
+    },
+    {
+      key: "5",
+      label: (
+        <Link to="/Dashboard" className="menu-link">
+          Dashboard
+        </Link>
+      ),
+    },
+    {
+      key: "6",
+      label: (
+        <Link to="/AboutUs" className="menu-link">
+          About us
+        </Link>
+      ),
+    },
+    {
+      key: "7",
+      label: (
+        <Link to="/ContactUs" className="menu-link">
+          Contact us
+        </Link>
+      ),
+    },
+    {
+      key: "8",
+      label: (
+        <Link to="/FAQs" className="menu-link">
+          FAQs
+        </Link>
+      ),
+    },
   ];
 
   return (
     <Layout style={{ margin: 0, padding: "0px" }}>
       {/* info banner */}
-      <div style={{ backgroundColor: "#1677ff" }}>
+      <div
+        style={{ backgroundColor: "#1677ff", width: "100%", height: "30px" }}
+      >
         <div
-          className="info-banner"
           style={{
-            backgroundColor: "#1677ff",
-            width: "100%",
-            height: 30,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            flexDirection: "row",
             maxWidth: "1400px",
-            margin: "auto",
+            margin: "0 auto",
+            padding: "0 20px",
+            fontSize: "12px", 
+            color: "#fff",
+            height: "100%",
           }}
         >
-          <div className="flex">
-            <p style={{ color: "#fff", marginRight: 10 }}>
-              <MailOutlined style={{ paddingRight: "5px" }} />
+          {/* Left section - Contact Info */}
+          <div
+            style={{
+              display: "flex",
+              gap: "15px", // Reduced gap for compactness
+              alignItems: "center",
+              height: "100%",
+            }}
+          >
+            <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
+              <MailOutlined style={{ paddingRight: "5px", fontSize: "14px" }} />
               info@engineerstudyhub.in
             </p>
-            <p style={{ color: "#fff" }}>
-              <PhoneOutlined style={{ padding: "0px 5px" }} />
+            <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
+              <PhoneOutlined
+                style={{ paddingRight: "5px", fontSize: "14px" }}
+              />
               +91 9876543210
             </p>
           </div>
-          <div className="Flex" style={{ color: "#fff" }}>
-            <p>
-              <DownOutlined style={{ paddingRight: "5px" }} />
+
+          {/* Right section - Country Selector */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%", 
+            }}
+          >
+            <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
+              <DownOutlined style={{ paddingRight: "5px", fontSize: "14px" }} />
               India
             </p>
           </div>
@@ -148,14 +168,12 @@ const MainLayout = () => {
         }}
       >
         <div
-          className="demo-logo"
-          style={{
-            color: "#000",
-            marginRight: "20px",
-          }}
+          className="logo-container flex"
+          style={{ height: "100%", margin: 0, marginRight: "40px" }}
         >
-          <h1>Engineer StudyHub</h1>
+          <img src={logo} alt="logo" style={{ width: 150 }} />
         </div>
+
         <Menu
           theme="light"
           mode="horizontal"
