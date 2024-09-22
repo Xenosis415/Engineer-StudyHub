@@ -1,14 +1,17 @@
 import React from "react";
 import "./Home.css";
+import Features from "./Features";
+import Highlight from "./Highlight";
+import HeroSlider from "./HeroSlider";
+import FAQ from "./FAQ";
 
 const Home = () => {
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Welcome to Engineer StudyHub</h1>
-      <p>
-        All the resources you want, at your Fringertips. Engineer-StudyHub is
-        the one stop for academic solution for every students of university.
-      </p>
+    <div>
+      <HeroSlider/>
+      <Highlight/>
+      <Features/>
+      <FAQ/>
     </div>
   );
 };

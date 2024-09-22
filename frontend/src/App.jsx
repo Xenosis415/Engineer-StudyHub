@@ -6,7 +6,7 @@ import MainLayout from "./Layout/MainLayout";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import JobPortalPage from "./pages/JobPortalPage";
-import JobListingPage from "./pages/JobListingPage";
+import DeveloperPage from "./pages/DeveloperPage";
 import LearningMaterial from "./Components/Learning Material/LearningMaterial";
 import RegisterPage from "./pages/RegistrationPage"; // Added registration page
 import JobDetails from "./Components/JobPortal/JobDetails";
@@ -25,8 +25,8 @@ function App() {
             <Route path="learning-material" element={<LearningMaterial />} />
             {<Route path="JobPortal" element={<JobPortalPage />} />}
             <Route
-              path="interview-preparation"
-              element={<div>Interview Preparation Page</div>}
+              path="DevelopersHub"
+              element={<DeveloperPage/>}
             />
             <Route path="*" element={<JobPortalPage/>}/>{" "}
             {/* Added 404 route */}
