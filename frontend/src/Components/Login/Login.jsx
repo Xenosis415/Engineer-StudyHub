@@ -49,14 +49,14 @@ const LoginPage = () => {
       <div className="login-card">
         <div className="login-image">
           <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+            src="https://img.freepik.com/free-vector/mobile-login-concept-illustration_114360-83.jpg?uid=R115740517&ga=GA1.1.202867201.1719126649&semt=ais_hybrid"
             alt="login"
             className="rounded-image"
           />
         </div>
         <div className="login-form">
           <div className="logo-container">
-            <Title level={2} className="logo-text">
+            <Title level={2} className="logo-text interactive-text">
               Engineer StudyHub
             </Title>
           </div>

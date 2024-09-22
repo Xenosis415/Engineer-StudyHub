@@ -1,8 +1,6 @@
 /* Home.css */
 .hero-layout {
   height: 100vh;
-  background: url("https://img.freepik.com/free-photo/students-collaborating-textbook_23-2147656059.jpg?t=st=1726843431~exp=1726847031~hmac=a2dcd47abf420f94dfd264702f421e2c3237cd031cc61c904a7dfd955473afb4&w=1060")
-    center/cover no-repeat;
   color: white;
   text-align: center;
 }
@@ -52,11 +50,11 @@
   flex-direction: row;
 }
 
-.highlight-container h1{
-    margin: 0;
+.highlight-container h1 {
+  margin: 0;
 }
-.highlight-content{
-    margin: 30px 20px;
+.highlight-content {
+  margin: 30px 20px;
 }
 
 /* Features.css */
@@ -91,48 +89,10 @@
 .feature-icon {
   font-size: 48px;
   color: #007bff;
-  margin:  20px 0;
+  margin: 20px 0;
 }
 
 /* Home.css */
-
-/* General styles for the Carousel */
-.carousel .slick-slide {
-  width: 100%;
-}
-
-/* Each slide should occupy full width and height */
-.slide-container {
-  width: 100%;
-  height: 80vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.slide-content{
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.slide-1 {
-  background-image: url("https://img.freepik.com/free-photo/students-working-laptop-together_23-2147655837.jpg?t=st=1726910568~exp=1726914168~hmac=33011f48fe8de26e605f693f842005fe22b629f0f11a203526933d26c9db38fb&w=1060"); /* Replace with actual image */
-}
-
-.slide-2 {
-  background-image: url("https://img.freepik.com/free-photo/team-coworkers-comparing-source-codes-running-laptop-screen-computer-monitor-it-development-office-software-developers-collaborating-data-coding-group-project-while-sitting-desk_482257-41846.jpg?t=st=1726911020~exp=1726914620~hmac=a1d4f77f051f391be1d6f96746ec640722bd0c48360d3eae2ff25f9902977275&w=1380"); /* Replace with actual image */
-}
-
-.slide-3 {
-  background-image: url("https://img.freepik.com/free-photo/hiring-concept-with-person-standing-chairs_23-2149519867.jpg?t=st=1726911071~exp=1726914671~hmac=525276fa8a922c13d3aa3736405a2fc36ea7ddea8bc803f68f1779ba078388d6&w=1060"); /* Replace with actual image */
-}
 
 /* Centering the content inside the slide */
 .slide-container {
@@ -182,9 +142,6 @@
   font-size: 14px;
   color: #444;
 }
-
-
-
 
 @keyframes gradientAnimation {
   0% {

@@ -1,8 +1,6 @@
-/* src/pages/MainLayout.css */
-
 .Menu-links .ant-menu-item-selected {
-  background-color: #2baffc !important; /* Customize the background color */
-  color: #fff !important; /* Customize the text color */
+  background-color: #2baffc !important;
+  color: #fff !important;
 }
 
 .Menu-links .ant-menu-item:hover {
