@@ -8,7 +8,7 @@ import HomePage from "./pages/HomePage";
 import JobPortalPage from "./pages/JobPortalPage";
 import DeveloperPage from "./pages/DeveloperPage";
 import LearningMaterial from "./Components/Learning Material/LearningMaterial";
-import RegisterPage from "./pages/RegistrationPage"; // Added registration page
+import RegisterPage from "./pages/RegistrationPage";
 import JobDetails from "./Components/JobPortal/JobDetails";
 import Dashboardpage from "./pages/Dashboardpage";
 function App() {
@@ -24,11 +24,8 @@ function App() {
             {/* Added registration route */}
             <Route path="learning-material" element={<LearningMaterial />} />
             {<Route path="JobPortal" element={<JobPortalPage />} />}
-            <Route
-              path="DevelopersHub"
-              element={<DeveloperPage/>}
-            />
-            <Route path="*" element={<JobPortalPage/>}/>{" "}
+            <Route path="DevelopersHub" element={<DeveloperPage />} />
+            <Route path="*" element={<JobPortalPage />} />{" "}
             {/* Added 404 route */}
           </Route>
           <Route path="/job/:id" element={<JobDetails />} />
