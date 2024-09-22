@@ -55,38 +55,46 @@ const MainLayout = () => {
         </Link>
       ),
     },
-    {
-      key: "4",
-      label: (
-        <Link to="/DevelopersHub" className="menu-link">
-          Developers Hub
-        </Link>
-      ),
-    },
-    {
-      key: "5",
-      label: (
-        <Link to="/AboutUs" className="menu-link">
-          About us
-        </Link>
-      ),
-    },
-    {
-      key: "6",
-      label: (
-        <Link to="/ContactUs" className="menu-link">
-          Contact us
-        </Link>
-      ),
-    },
-    {
-      key: "7",
-      label: (
-        <Link to="/FAQs" className="menu-link">
-          FAQs
-        </Link>
-      ),
-    },
+   {
+  key: "4",
+  label: (
+    <Link to="/DevelopersHub" className="menu-link">
+      Developers Hub
+    </Link>
+  ),
+},
+{
+  key: "5",
+  label: (
+    <Link to="/Dashboard" className="menu-link">
+      Dashboard
+    </Link>
+  ),
+},
+{
+  key: "6",
+  label: (
+    <Link to="/AboutUs" className="menu-link">
+      About us
+    </Link>
+  ),
+},
+{
+  key: "7",
+  label: (
+    <Link to="/ContactUs" className="menu-link">
+      Contact us
+    </Link>
+  ),
+},
+{
+  key: "8",
+  label: (
+    <Link to="/FAQs" className="menu-link">
+      FAQs
+    </Link>
+  ),
+},
   ];
 
   return (
