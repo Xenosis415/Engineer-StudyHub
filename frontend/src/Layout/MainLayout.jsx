@@ -48,6 +48,14 @@ const MainLayout = () => {
         </Link>
       ),
     },
+    {
+      key: "4",
+      label: (
+        <Link to="/Dashboard" className="menu-link">
+          Dashboard
+        </Link>
+      ),
+    },
     
   ];
 
