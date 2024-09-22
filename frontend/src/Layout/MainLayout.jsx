@@ -1,27 +1,34 @@
 import React from "react";
 import { Layout, Menu, theme, Button } from "antd";
-import { HomeOutlined } from "@ant-design/icons";
+import {
+  DownOutlined,
+  HomeOutlined,
+  MailOutlined,
+  PhoneOutlined,
+} from "@ant-design/icons";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./MainLayout.css";
+import FooterComponent from "../Components/Footer/FooterComponent";
 
 const { Header, Content } = Layout;
 
 const MainLayout = () => {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   const location = useLocation();
   const navigate = useNavigate();
 
-  
+  // Path to key mapping
+  const pathKeyMap = {
+    "/": "1",
+    "/learning-material": "2",
+    "/JobPortal": "3",
+    "/DevelopersHub": "4",
+    "/AboutUs": "5",
+    "/ContactUs": "6",
+    "/FAQs": "7",
+  };
 
-  const currentPath = location.pathname;
-  let activeKey = "1";
-  if (currentPath.includes("learning-material")) activeKey = "2";
-  if (currentPath.includes("JobPortal")) activeKey = "3";
-  if (currentPath.includes("interview-preparation")) activeKey = "4";
-  if (currentPath.includes("login")) activeKey = "5";
+  // Get active key based on the current path
+  const activeKey = pathKeyMap[location.pathname] || "1"; // Default to "1" if path doesn't match
 
   const items = [
     {
@@ -48,25 +55,94 @@ const MainLayout = () => {
         </Link>
       ),
     },
-    
+    {
+      key: "4",
+      label: (
+        <Link to="/DevelopersHub" className="menu-link">
+          Developers Hub
+        </Link>
+      ),
+    },
+    {
+      key: "5",
+      label: (
+        <Link to="/AboutUs" className="menu-link">
+          About us
+        </Link>
+      ),
+    },
+    {
+      key: "6",
+      label: (
+        <Link to="/ContactUs" className="menu-link">
+          Contact us
+        </Link>
+      ),
+    },
+    {
+      key: "7",
+      label: (
+        <Link to="/FAQs" className="menu-link">
+          FAQs
+        </Link>
+      ),
+    },
   ];
 
   return (
-    <Layout style={{margin: 0}}>
+    <Layout style={{ margin: 0, padding: "0px" }}>
+      {/* info banner */}
+      <div style={{ backgroundColor: "#1677ff" }}>
+        <div
+          className="info-banner"
+          style={{
+            backgroundColor: "#1677ff",
+            width: "100%",
+            height: 30,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexDirection: "row",
+            maxWidth: "1400px",
+            margin: "auto",
+          }}
+        >
+          <div className="flex">
+            <p style={{ color: "#fff", marginRight: 10 }}>
+              <MailOutlined style={{ paddingRight: "5px" }} />
+              info@engineerstudyhub.in
+            </p>
+            <p style={{ color: "#fff" }}>
+              <PhoneOutlined style={{ padding: "0px 5px" }} />
+              +91 9876543210
+            </p>
+          </div>
+          <div className="Flex" style={{ color: "#fff" }}>
+            <p>
+              <DownOutlined style={{ paddingRight: "5px" }} />
+              India
+            </p>
+          </div>
+        </div>
+      </div>
       <Header
         style={{
           display: "flex",
           alignItems: "center",
-          backgroundColor: "#f4f9fd",
+          backgroundColor: "#ffffff",
           width: "100%",
           color: "#2baffc",
           marginRight: 20,
+          boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.1)",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
         }}
       >
         <div
           className="demo-logo"
           style={{
-            color: "#2baffc",
+            color: "#000",
             marginRight: "20px",
           }}
         >
@@ -75,29 +151,28 @@ const MainLayout = () => {
         <Menu
           theme="light"
           mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          selectedKeys={[activeKey]} // Dynamically set active key
+          selectedKeys={[activeKey]} // Set active key dynamically
           className="Menu-links"
           items={items}
           style={{
             flex: 1,
             minWidth: 0,
-            backgroundColor: "#f4f9fd",
-            color: "#2baffc",
+            backgroundColor: "transparent",
+            color: "#fff",
+            border: "none",
           }}
         />
         <Button
-          onClick={() => navigate("/login")} // Navigate to login page
+          onClick={() => navigate("/login")}
           style={{
             padding: "18px 30px",
             borderRadius: "6px",
-            color: "#2baffc",
+            color: "#1677ff",
             fontWeight: "bold",
-            marginRight: "3px",
-            border: "none",
+            marginRight: "10px",
+            border: "1px solid #1677ff",
             background: "transparent",
           }}
-          type="text"
         >
           Login
         </Button>
@@ -110,22 +185,23 @@ const MainLayout = () => {
           }}
           type="primary"
         >
-          Join Us
+          Sign Up
         </Button>
       </Header>
-      <Layout style={{margin:0}}>
-        <Layout
-          style={{
-            padding: "0 24px 24px",
-          }}
-        >
+      <Layout
+        style={{
+          margin: 0,
+          padding: "0px",
+          backgroundImage: "linear-gradient(to right, #e0eafc, #cfdef3)",
+        }}
+      >
+        <Layout style={{ padding: "0" }}>
           <Content
             style={{
-              padding: 24,
               margin: 0,
               minHeight: "100vh",
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
+              backgroundImage: "linear-gradient(to right, #e0eafc, #cfdef3)",
+              borderRadius: 0,
             }}
           >
             {/* Outlet renders the child routes */}
@@ -133,6 +209,7 @@ const MainLayout = () => {
           </Content>
         </Layout>
       </Layout>
+      <FooterComponent />
     </Layout>
   );
 };
