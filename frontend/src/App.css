@@ -1,12 +1,9 @@
 .ant-menu-item-selected {
   background-color: transparent !important;
-  color: #2baffc; 
+  color: #6441a3;
   border-bottom: 5px solid #000;
 }
 
 .ant-menu-item-selected a {
-  color: #1677ff !important; 
+  color: #6441a3 !important;
 }
-
-
-
