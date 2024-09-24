@@ -1,16 +1,18 @@
-import { Button, Modal, Input, theme, Card, Row } from 'antd';
+import { Button, Modal, Input, theme, Card, Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import AddResource from './AddResource';
 import { Layout, Menu, Select } from 'antd';
-import './Dashboard.css'; 
-import 'antd/dist/reset.css'; 
+import './Dashboard.css';
+import 'antd/dist/reset.css';
 
 const { Option } = Select;
 const { Sider } = Layout;
 const { Search } = Input;
+const { Title } = Typography;
 
 const Dashboard = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [submittedData, setSubmittedData] = useState([]); // State for submitted data
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -29,6 +31,15 @@ const Dashboard = () => {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
 
+    // Function to handle new submission from AddResource component
+    const handleNewSubmission = (newSubmission) => {
+        setSubmittedData((prevData) => [...prevData, newSubmission]); // Update the submitted data
+    };
+    const viewPdf = (file) => {
+        const fileURL = URL.createObjectURL(file); // Create a URL for the PDF
+        window.open(fileURL, "_blank"); // Open the PDF in a new tab
+      };
+
     return (
         <Layout
             style={{
@@ -46,6 +57,7 @@ const Dashboard = () => {
                     mode="inline"
                     defaultSelectedKeys={['1']}
                     style={{ height: '100%', borderRight: 0 }}>
+                    {/* Filters */}
                     <Menu.Item key="1">
                         <Select placeholder="Select Subject">
                             <Option value="math">Mathematics</Option>
@@ -84,6 +96,7 @@ const Dashboard = () => {
                     <Menu.Item key="5">
                         <Button  type="primary"  >Apply </Button>
                     </Menu.Item>
+
                 </Menu>
             </Sider>
             <Layout style={{ padding: '0 24px', background: '#f0f0f0' }}>
@@ -103,58 +116,31 @@ const Dashboard = () => {
                             open={isModalVisible}
                             onOk={handleOk}
                             onCancel={handleCancel}>
-                            <AddResource onClose={handleCancel} />
+                            <AddResource onClose={handleCancel} onSubmit={handleNewSubmission} />
                         </Modal>
-                        {/* Horizontal Dummy Cards Section */}
-                        <div style={{ marginTop: '20px' }}>
-                            <Row>
-                                <Card
-                                    title="Resource 1"
-                                    bordered={true}
-                                    style={{ width: '100%', marginBottom: '16px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        
-                                        <div>
-                                            <p>This is the content for Resource 1. You can add more details here about this resource.</p>
-                                            <Button>Edit</Button>
-                                            <Button>Delete</Button>
-                                            <Button>Update</Button>
-                                        </div>
-                                    </div>
-                                </Card>
-                            </Row>
-                            <Row>
-                                <Card
-                                    title="Resource 2"
-                                    bordered={true}
-                                    style={{ width: '100%', marginBottom: '16px' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        
-                                        <div>
-                                            <p>This is the content for Resource 2. Add further details about this resource here.</p>
-                                            <Button>Edit</Button>
-                                            <Button>Delete</Button>
-                                            <Button>Update</Button>
-                                        </div>
-                                    </div>
-                                </Card>
-                            </Row>
-                            <Row>
-                                <Card
-                                    title="Resource 3"
-                                    bordered={true}
-                                    style={{ width: '100%' }}>
-                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                        
-                                        <div>
-                                            <p>This is the content for Resource 3. Additional information can be added here.</p>
-                                            <Button>Edit</Button>
-                                            <Button>Delete</Button>
-                                            <Button>Update</Button>
-                                        </div>
-                                    </div>
-                                </Card>
-                            </Row>
+
+                        {/* Display Submitted Details */}
+                        <div className="submitted-details" style={{ marginTop: "20px" }}>
+                            <Title level={3}>Submitted Details:</Title>
+                            <div className="cards" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                                {submittedData.length > 0 ? (
+                                    submittedData.map((submission, index) => (
+                                        <Card key={index} style={{ border: "1px solid #ccc", borderRadius: "8px", padding: "15px", backgroundColor: "#fff" }}>
+                                            <p><strong>University:</strong> {submission.university}</p>
+                                            <p><strong>Branch:</strong> {submission.branch}</p>
+                                            <p><strong>Subject:</strong> {submission.subject}</p>
+                                            <p><strong>Semester:</strong> {submission.semester}</p>
+                                            {submission.file && (
+                                                <Button type="primary" onClick={() => viewPdf(submission.file)}>
+                                                    View PDF
+                                                </Button>
+                                            )}
+                                        </Card>
+                                    ))
+                                ) : (
+                                    <p>No submissions yet.</p>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

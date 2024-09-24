@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { Button, Form, Checkbox, Select, Upload, Input, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
-const AddResource = ({ onClose }) => {
+const AddResource = ({ onClose,onSubmit }) => {
+  const [university, setUniversity] = useState("");
+  const [branch, setBranch] = useState("");
+  const [subject, setSubject] = useState("");
+  const [semester, setSemester] = useState("");
+  const [pdfFile, setPdfFile] = useState(null); // State for file input
+  const fileInputRef = useRef(null); 
+
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { Option } = Select;
 
@@ -17,14 +24,36 @@ const AddResource = ({ onClose }) => {
     return Promise.resolve();
   };
 
-  const onFinish = (values) => {
-    console.log('Form Submitted:', values);
-    message.success('Resource added successfully!');
-  
+  const handleFileChange = (info) => {
+    const file = info.fileList[0]?.originFileObj;
+    if (file && file.type === "application/pdf") {
+      setPdfFile(file);
+    } else {
+      message.error("Please select a valid PDF file.");
+      fileInputRef.current.value = ""; // Clear file input
+    }
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  const handleSubmit = () => {
+    const newSubmission = {
+      university,
+      branch,
+      subject,
+      semester,
+      file: pdfFile,
+    };
+
+    onSubmit(newSubmission); // Pass the new submission back to Dashboard
+    message.success("Resource added successfully!");
+    
+    // Clear input fields
+    setUniversity("");
+    setBranch("");
+    setSubject("");
+    setSemester("");
+    setPdfFile(null);
+    fileInputRef.current.value = ""; // Reset file input
+    onClose(); // Close the modal
   };
 
   return (
@@ -32,16 +61,16 @@ const AddResource = ({ onClose }) => {
       <h1>Add Resources</h1>
       <div className='add-content'>
         <Form
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
+          onFinish={handleSubmit}
+          // onFinishFailed={onFinishFailed}
           layout="vertical"
         >
             <Form.Item
             label="University"
-            name="univercity"
-            rules={[{ required: true, message: 'Please select the Univercity!' }]}
+            // name="univercity"
+            // rules={[{ required: true, message: 'Please select the Univercity!' }]}
           >
-            <Select placeholder="Select   Univercity">
+            <Select placeholder="Select Univercity" value={university} onChange={setUniversity}>
               <Option value="1st">RGPV</Option>
               <Option value="2nd">DAVV</Option>
               <Option value="3rd">xyz</Option>
@@ -52,10 +81,10 @@ const AddResource = ({ onClose }) => {
 
            <Form.Item
             label="Branch"
-            name="Branch"
-            rules={[{ required: true, message: 'Please select the semester!' }]}
+            // name="Branch"
+            // rules={[{ required: true, message: 'Please select the semester!' }]}
           >
-            <Select placeholder="Select Branch">
+            <Select placeholder="Select Branch" value={branch} onChange={setBranch}>
               <Option value="1st"> </Option>
               <Option value="2nd">CS</Option>
               <Option value="3rd"></Option>
@@ -65,10 +94,10 @@ const AddResource = ({ onClose }) => {
 
           <Form.Item
             label="Semester"
-            name="semester"
-            rules={[{ required: true, message: 'Please select the semester!' }]}
+            // name="semester"
+            // rules={[{ required: true, message: 'Please select the semester!' }]}
           >
-            <Select placeholder="Select Semester">
+            <Select placeholder="Select Semester"  value={semester} onChange={setSemester}>
               <Option value="1st">1st Semester</Option>
               <Option value="2nd">2nd Semester</Option>
               <Option value="3rd">3rd Semester</Option>
@@ -78,10 +107,10 @@ const AddResource = ({ onClose }) => {
 
           <Form.Item
             label="Subject"
-            name="subject"
-            rules={[{ required: true, message: 'Please select the subject!' }]}
+            // name="subject"
+            // rules={[{ required: true, message: 'Please select the subject!' }]}
           >
-            <Select placeholder="Select Subject">
+            <Select placeholder="Select Subject"  value={subject} onChange={setSubject}>
               <Option value="math">Mathematics</Option>
               <Option value="physics">Physics</Option>
               <Option value="cs">Computer Science</Option>
@@ -111,12 +140,12 @@ const AddResource = ({ onClose }) => {
               </Form.Item>
               <Form.Item
                 label="Upload PYQ PDF"
-                name="pyqFile"
+                // name="pyqFile"
                 rules={[{ required: true, message: 'Please upload the PYQ PDF!' }]}
               >
-                <Upload beforeUpload={() => false}>
-                  <Button icon={<UploadOutlined />}>Click to Upload PDF</Button>
-                </Upload>
+               <Upload onChange={handleFileChange} beforeUpload={() => false}>
+          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        </Upload>
               </Form.Item>
             </>
           )}
