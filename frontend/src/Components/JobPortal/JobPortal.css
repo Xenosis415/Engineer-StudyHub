@@ -1,24 +1,23 @@
 @keyframes gradientAnimation {
   0% {
-    background: linear-gradient(
-      135deg,
-      #4a90e2,
-      #50e3c2
-    ); /* Blue to Green Gradient */
+    background: linear-gradient(135deg,
+        #4a90e2,
+        #50e3c2);
+    /* Blue to Green Gradient */
   }
+
   50% {
-    background: linear-gradient(
-      135deg,
-      #50e3c2,
-      #4a90e2
-    ); /* Green to Blue Gradient */
+    background: linear-gradient(135deg,
+        #50e3c2,
+        #4a90e2);
+    /* Green to Blue Gradient */
   }
+
   100% {
-    background: linear-gradient(
-      135deg,
-      #4a90e2,
-      #50e3c2
-    ); /* Blue to Green Gradient */
+    background: linear-gradient(135deg,
+        #4a90e2,
+        #50e3c2);
+    /* Blue to Green Gradient */
   }
 }
 
@@ -26,9 +25,11 @@
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #4a90e2, #50e3c2); /* Initial Gradient */
+  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  /* Initial Gradient */
   background-size: 200% 200%;
-  animation: gradientAnimation 10s ease infinite; /* Animation Properties */
+  animation: gradientAnimation 10s ease infinite;
+  /* Animation Properties */
   position: relative;
 }
 
@@ -57,6 +58,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -106,33 +108,50 @@
 .search-bar {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  margin: 20px 0;
 }
 
-.ant-input-search {
+.custom-search-input {
   width: 100%;
   max-width: 600px;
-  transition: box-shadow 0.3s ease;
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
 }
 
-.ant-input-search:hover,
-.ant-input-search:focus {
-  box-shadow: 0 0 10px rgba(22, 119, 255, 0.3);
+.custom-search-input .ant-input {
+  border-radius: 25px 0 0 25px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #e0e0e0;
+  height: 44px; 
+  flex-grow: 1; 
 }
 
-.ant-input-search .ant-input {
-  border-radius: 5px;
+.custom-search-input .ant-input:focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
 }
 
-.ant-input-search .ant-btn {
-  border-radius: 5px;
-  background-color: #1677ff;
+.custom-search-input .ant-btn-primary {
+  background: linear-gradient(135deg, #4a90e2, #0073e6);
+  border: none;
+  border-radius: 0 25px 25px 0;
+  height: 44px;
+  padding: 0 20px; 
+  font-size: 16px;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.ant-input-search .ant-btn:hover {
-  background-color: #005bb5;
+.custom-search-input .ant-btn-primary:hover {
+  background: linear-gradient(135deg, #0073e6, #005bb5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
 
 .content-sections {
   display: flex;
@@ -195,7 +214,37 @@
   0% {
     transform: translateY(0);
   }
+
   100% {
     transform: translateY(-100%);
   }
+}
+
+.explore-button {
+  margin-block-start: 20px;
+  background-color: #1677ff;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+/* .description {
+  max-height: 4em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 4em;
+} */
+
+.description {
+  height: 8em;
+  overflow: hidden;
+  font-weight: bold;
+  
+ 
+}
+
+.card-meta {
+  padding: 10px;
+  font-size: 14px;
+  
 }

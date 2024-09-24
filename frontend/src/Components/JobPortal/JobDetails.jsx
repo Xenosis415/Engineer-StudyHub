@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card } from "antd";
+import { Card, Input } from "antd";
+import { SearchOutlined } from '@ant-design/icons';
 import "./JobDetails.css";
 
-
-
+const { Search } = Input;
+const onSearch = (value) => {
+    console.log("Search value:", value);
+  };
 const JobDetails = () => {
     const { id } = useParams();
     const FeaturedJobCards = [
@@ -75,41 +78,43 @@ const JobDetails = () => {
             buttonColor: '#B2FF87'
         },
     ]
-
-
-
-
-    const job = FeaturedJobCards.find(job => job.id === parseInt(id));
-
-
+ const job = FeaturedJobCards.find(job => job.id === parseInt(id));
     if (!job) return <div>Job not found</div>;
 
-    return (
-        <div className="job-container">
-            <div className="job-grid">
-                <div className="job-info">
-                    <p className="package">Package: {job.package}</p>
-                    <p className="location">Job Location: <strong>{job.location}</strong></p>
-                    <h3 className="job-title">{job.title}</h3>
-                    <div className="tags">
-                        {job.tags.map((tag, index) => (
-                            <span key={index} className="tag">{tag}</span>
-                        ))}
-                    </div>
-                    <div className="job-footer" style={{ backgroundColor: job.buttonColor }}>
-                        <div className="company-info">
-                            <img src={job.logo} alt={`${job.company} logo`} className="company-logo" />
-                            <p className="company-name">{job.company}</p>
-                        </div>
-                        <button className="view-btn">View</button>
-                    </div>
-                    <p className="views">👁️ {job.views}</p>
-                    <div className="background-logos">
-                        <img src={job.logo} alt={job.company} className="logo" />
-                    </div>
-                </div>
-            </div>
-        </div>
+    return ( 
+        <div className="search-bar">
+            <Search
+              placeholder="Search for jobs,Company,etc"
+              onSearch={onSearch}
+              enterButton
+              className="custom-search-input"
+            />
+          </div>
+        // <div className="job-container">
+        //     <div className="job-grid">
+        //         <div className="job-info">
+        //             <p className="package">Package: {job.package}</p>
+        //             <p className="location">Job Location: <strong>{job.location}</strong></p>
+        //             <h3 className="job-title">{job.title}</h3>
+        //             <div className="tags">
+        //                 {job.tags.map((tag, index) => (
+        //                     <span key={index} className="tag">{tag}</span>
+        //                 ))}
+        //             </div>
+        //             <div className="job-footer" style={{ backgroundColor: job.buttonColor }}>
+        //                 <div className="company-info">
+        //                     <img src={job.logo} alt={`${job.company} logo`} className="company-logo" />
+        //                     <p className="company-name">{job.company}</p>
+        //                 </div>
+        //                 <button className="view-btn">View</button>
+        //             </div>
+        //             <p className="views">👁️ {job.views}</p>
+        //             <div className="background-logos">
+        //                 <img src={job.logo} alt={job.company} className="logo" />
+        //             </div>
+        //         </div>
+        //     </div>
+        // </div>
     );
 };
 
