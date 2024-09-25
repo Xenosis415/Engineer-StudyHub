@@ -11,6 +11,9 @@ import RegisterPage from "./pages/RegistrationPage";
 import JobDetails from "./Components/JobPortal/JobDetails";
 import Dashboardpage from "./pages/Dashboardpage";
 
+import AboutUsComponent from "./Components/AboutUs/AboutUsComponent";
+import ContactUs from "./Components/ContactUs/ContactUs";
+
 function App() {
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
@@ -20,11 +23,13 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="Dashboard" element={<Dashboardpage />} />
             <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} /> 
+            <Route path="register" element={<RegisterPage />} />
             <Route path="learning-material" element={<LearningMaterial />} />
             <Route path="JobPortal" element={<JobPortalPage />} />
             <Route path="DevelopersHub" element={<DeveloperPage />} />
             <Route path="job/:id" element={<JobDetails />} />
+            <Route path="AboutUs" element={<AboutUsComponent />} />
+            <Route path="ContactUs" element={<ContactUs />} />
             <Route path="*" element={<JobPortalPage />} />
           </Route>
         </Routes>

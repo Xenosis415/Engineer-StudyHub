@@ -9,7 +9,7 @@ import {
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./MainLayout.css";
 import FooterComponent from "../Components/Footer/FooterComponent";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/Engineer_StudyHub_-removebg-preview.png";
 
 const { Header, Content } = Layout;
 
@@ -25,7 +25,6 @@ const MainLayout = () => {
     "/DevelopersHub": "4",
     "/AboutUs": "5",
     "/ContactUs": "6",
-    "/FAQs": "7",
   };
 
   // Get active key based on the current path
@@ -76,7 +75,7 @@ const MainLayout = () => {
       key: "6",
       label: (
         <Link to="/AboutUs" className="menu-link">
-          About us
+          About Us
         </Link>
       ),
     },
@@ -84,15 +83,7 @@ const MainLayout = () => {
       key: "7",
       label: (
         <Link to="/ContactUs" className="menu-link">
-          Contact us
-        </Link>
-      ),
-    },
-    {
-      key: "8",
-      label: (
-        <Link to="/FAQs" className="menu-link">
-          FAQs
+          Contact Us
         </Link>
       ),
     },
@@ -102,7 +93,7 @@ const MainLayout = () => {
     <Layout style={{ margin: 0, padding: "0px" }}>
       {/* info banner */}
       <div
-        style={{ backgroundColor: "#1677ff", width: "100%", height: "30px" }}
+        style={{ backgroundColor: "#553CDF", width: "100%", height: "45px" }}
       >
         <div
           style={{
@@ -112,7 +103,7 @@ const MainLayout = () => {
             maxWidth: "1400px",
             margin: "0 auto",
             padding: "0 20px",
-            fontSize: "12px", 
+            fontSize: "12px",
             color: "#fff",
             height: "100%",
           }}
@@ -127,12 +118,26 @@ const MainLayout = () => {
             }}
           >
             <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
-              <MailOutlined style={{ paddingRight: "5px", fontSize: "14px" }} />
+              <MailOutlined
+                style={{
+                  paddingRight: "5px",
+                  fontSize: "18px",
+                  color: "#fff",
+                  fontWeight: "400",
+                  fontStyle: "normal",
+                }}
+              />
               info@engineerstudyhub.in
             </p>
             <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
               <PhoneOutlined
-                style={{ paddingRight: "5px", fontSize: "14px" }}
+                style={{
+                  paddingRight: "5px",
+                  fontSize: "18px",
+                  fontWeight: "400",
+                  fontStyle: "normal",
+                  color: "#fff",
+                }}
               />
               +91 9876543210
             </p>
@@ -143,7 +148,7 @@ const MainLayout = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              height: "100%", 
+              height: "100%",
             }}
           >
             <p style={{ margin: 0, display: "flex", alignItems: "center" }}>
@@ -159,7 +164,7 @@ const MainLayout = () => {
           alignItems: "center",
           backgroundColor: "#ffffff",
           width: "100%",
-          color: "#2baffc",
+          color: "#6441A3",
           marginRight: 20,
           boxShadow: "0px 5px 5px rgba(0, 0, 0, 0.1)",
           position: "sticky",
@@ -169,9 +174,9 @@ const MainLayout = () => {
       >
         <div
           className="logo-container flex"
-          style={{ height: "100%", margin: 0, marginRight: "40px" }}
+          style={{ height: "100%", margin: 0 }}
         >
-          <img src={logo} alt="logo" style={{ width: 150 }} />
+          <img src={logo} alt="logo" style={{ width: "220px" }} />
         </div>
 
         <Menu
@@ -193,18 +198,19 @@ const MainLayout = () => {
           style={{
             padding: "18px 30px",
             borderRadius: "6px",
-            color: "#1677ff",
+            color: "#6441A3",
             fontWeight: "bold",
             marginRight: "10px",
-            border: "1px solid #1677ff",
+            border: "1px solid #6441A3",
             background: "transparent",
           }}
         >
           Login
         </Button>
         <Button
+          onClick={() => navigate("/register")}
           style={{
-            backgroundColor: "#0958d9",
+            backgroundColor: "#553CDF",
             padding: "18px 25px",
             borderRadius: "6px",
             color: "#fff",

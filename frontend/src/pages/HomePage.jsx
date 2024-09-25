@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../Components/Home/Home"; // Adjust path based on your structure
+import Home from "../Components/Home/Home";
 
 const LoginPage = () => {
   return (

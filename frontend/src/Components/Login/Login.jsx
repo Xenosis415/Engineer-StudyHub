@@ -24,10 +24,13 @@ const LoginPage = () => {
     try {
       // Make the POST request to the backend
       const response = await axios.post("http://localhost:5000/api/login", {
+     
+        
         email: values.email,
         password: values.password,
         role: values.role,
       });
+      console.log(response);
       // Store the JWT token
       localStorage.setItem("token", response.data.token);
       // Notify the user of success
