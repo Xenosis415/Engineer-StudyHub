@@ -110,15 +110,15 @@
     flex-shrink: 0;
   }
 
-  .search-box {
+   .search-box {
     flex-grow: 1;
     max-width: 500px; 
     width: 100%;    
     margin-right: 20px;
-    /* padding-top: 10px; */
-    padding-bottom: 20px;
+     padding-top: 10px; 
+    padding-bottom: 20px; 
 
-  }
+   } 
   
   .flex-container button {
     flex-shrink: 0;
@@ -130,13 +130,24 @@
   /* end */
 
   /* sider 1 css  */
-  .head-sty {
+  .head-sty h1 {
     display: flex;
     justify-content: center;  
     align-items: center;      
-    padding-top: 20px;
-    color: white;
+    padding-top: 30px;
+    color: #fff;
     text-align: center;
+    padding-bottom: 20px;
+
+  }
+  .head-sty h2 {
+    display: flex;
+    justify-content: center;  
+    align-items: center;      
+    padding-top: 30px;
+    color: #fff;
+    text-align: center;
+    padding-bottom: 20px;
 
   }
 
@@ -204,3 +215,30 @@ button:hover {
     width: 50px; /* Thumbnail width */
     border-radius: 4px; /* Rounded corners for images */
 }
+
+
+/* Search css  */
+
+/* Increase the height of the search input and button */
+.ant-input-affix-wrapper .ant-input {
+  height: 20px; /* Adjust the height as needed */
+  /* margin-bottom: 10px; */
+}
+
+.ant-input-search-button {
+  height: 50px; /* Adjust the height to match the input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Adjust font size if needed */
+  padding: 0 16px; /* Adjust padding */
+}
+
+/* Optional: Customize the border radius */
+.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+  border-color: #1890ff; /* Change the border color on hover */
+}
+
+
+/* // layout checkboxx css  */
+
