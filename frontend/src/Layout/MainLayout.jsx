@@ -54,7 +54,7 @@ const MainLayout = () => {
       key: "3",
       label: (
         <Link to="/JobPortal" className="menu-link">
-          Job Portal
+          Job Portals
         </Link>
       ),
     },
