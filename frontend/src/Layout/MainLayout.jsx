@@ -19,12 +19,15 @@ const MainLayout = () => {
 
   // Path to key mapping
   const pathKeyMap = {
-    "/": "1",
+    "/homePage": "1",
     "/learning-material": "2",
     "/JobPortal": "3",
     "/DevelopersHub": "4",
-    "/AboutUs": "5",
-    "/ContactUs": "6",
+    "/Dashboard": "5",
+    "/AboutUs": "6",
+    "/ContactUs": "7",
+    "/login": "8",
+    "/register": "9",
   };
 
   // Get active key based on the current path
@@ -34,7 +37,7 @@ const MainLayout = () => {
     {
       key: "1",
       label: (
-        <Link to="/" className="menu-link">
+        <Link to="/homePage" className="menu-link">
           <HomeOutlined style={{ fontSize: "22px", marginTop: "10px" }} />
         </Link>
       ),
