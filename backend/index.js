@@ -12,12 +12,6 @@ import jobRoute from "./routes/job.route.js";
 
 const app = express();
 
-// app.get("/home",(req,res) => {
-//     return res.status(200).json({
-//         message:"Im coming from nskf",
-//         success:true
-//     })
-// })
 
 // middleware
 app.use(express.json());
@@ -34,13 +28,11 @@ const PORT = process.env.PORT || 3000;
 
 
 // api's
-
  app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
  app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
 
-// "http://localhost:8000/api/user/register"
 
 app.listen(PORT,()=>{
     connectDB();
