@@ -20,7 +20,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
+            <Route path="homePage" index element={<HomePage />} />
             <Route path="Dashboard" element={<Dashboardpage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
