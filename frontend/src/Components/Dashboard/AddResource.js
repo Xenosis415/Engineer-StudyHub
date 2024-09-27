@@ -1,33 +1,84 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button, Form, Checkbox, Select, Upload, Input, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
-const AddResource = ({ onClose,onSubmit }) => {
-
-
+const AddResource = ({ onClose, onSubmit, initialValues }) => {
   const [university, setUniversity] = useState("");
   const [branch, setBranch] = useState("");
   const [subject, setSubject] = useState("");
   const [semester, setSemester] = useState("");
-  const [pyqFile, setPyqFile] = useState(null); // State for file input
+  const [pyqFile, setPyqFile] = useState(null);
   const [noteFile, setNoteFile] = useState(null);
   const [title, setTitle] = useState("");
   const [noteTitle, setNoteTitle] = useState("");
-  const fileInputRef = useRef(null); 
-  const fileInputRefs = useRef(null); 
-  const fileInputRefImage = useRef(null); 
-  const [videoTitle , setVideoTitle]=useState("");
-  const [videoDes , setVideoDes]=useState("");
-  const [videoLink , setVideoLink]=useState("");
+  const [videoTitle, setVideoTitle] = useState("");
+  const [videoDes, setVideoDes] = useState("");
+  const [videoLink, setVideoLink] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [thumbnailPreview, setThumbnailPreview] = useState(null); 
+  const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  const [fileList, setFileList] = useState([]);
+
   const { Option } = Select;
   const [form] = Form.useForm(); 
+
+  useEffect(() => {
+    if (initialValues) {
+      // Set the form fields with initial values
+      form.setFieldsValue({
+        university: initialValues.university,
+        branch: initialValues.branch,
+        subject: initialValues.subject,
+        semester: initialValues.semester,
+        pyqtitle: initialValues.title,
+        notestitle: initialValues.noteTitle,
+        videoTitle: initialValues.videoTitle,
+        videoDescription: initialValues.videoDes,
+        videoLink: initialValues.videoLink,
+      });
+      setThumbnailPreview(initialValues.thumbnailPreview);
+      setSelectedOptions(initialValues.selectedOptions || []);
+      // Set the file inputs if needed
+      if (initialValues.file) setPyqFile(initialValues.file);
+      if (initialValues.fileNote) setNoteFile(initialValues.fileNote);
+    } else {
+      // Reset form fields for adding a new resource
+      form.resetFields();
+    }
+  }, [initialValues, form]);
 
   const onCheckboxChange = (checkedValues) => {
     setSelectedOptions(checkedValues);
   };
 
+  const handleFileChange = (info) => {
+    const file = info.fileList[0]?.originFileObj;
+    if (file && file.type === "application/pdf") {
+      setPyqFile(file);
+      setFileList(info.fileList);
+    } else {
+      message.error("Please select a valid PDF file.");
+      setFileList([]);
+    }
+  };
+
+  const handleFileNoteChanges = (info) => {
+    const file = info.fileList[0]?.originFileObj;
+    if (file && file.type === "application/pdf") {
+      setNoteFile(file);
+    } else {
+      message.error("Please select a valid PDF file.");
+    }
+  };
+
+  const handleThumbnailChange = (info) => {
+    const file = info.fileList[0]?.originFileObj;
+    if (file && file.type.startsWith('image/')) {
+      const imageURL = URL.createObjectURL(file);
+      setThumbnailPreview(imageURL);
+    } else {
+      message.error('Please upload a valid image file for the thumbnail.');
+    }
+  };
   const validateCheckboxGroup = (rule, value) => {
     if (!value || value.length < 1) {
       return Promise.reject(new Error('Please select at least one resource type!'));
@@ -35,37 +86,7 @@ const AddResource = ({ onClose,onSubmit }) => {
     return Promise.resolve();
   };
 
-  const handleFileChange = (info) => {
-    const file = info.fileList[0]?.originFileObj;
-    if (file && file.type === "application/pdf") {
-      setPyqFile(file);
-    } else {
-      message.error("Please select a valid PDF file.");
-      fileInputRef.current.value = ""; // Clear file input
-    }
-  };
 
-  const handleFileNoteChanges = (info) => {
-    const file = info.fileList[0]?.originFileObj;
-    if (file && file.type === "application/pdf") {
-      setNoteFile(file)
-    } else {
-      message.error("Please select a valid PDF file.");
-      fileInputRefs.current.value = ""; // Clear file input
-    }
-  };
-  const handleThumbnailChange = (info) => {
-    const file = info.fileList[0]?.originFileObj;
-    
-    if (file && file.type.startsWith('image/')) {
-      // Create a URL for the image file to preview it
-      const imageURL = URL.createObjectURL(file);
-      setThumbnailPreview(imageURL);
-    } else {
-      fileInputRefImage.current.value=""
-      message.error('Please upload a valid image file for the thumbnail.');
-    }
-  };
   const handleSubmit = () => {
     const newSubmission = {
       university,
@@ -77,108 +98,99 @@ const AddResource = ({ onClose,onSubmit }) => {
       videoTitle,
       videoDes,
       videoLink,
-      thumbnailPreview:thumbnailPreview,
+      thumbnailPreview,
       file: pyqFile,
-      fileNote : noteFile
+      fileNote: noteFile,
+      selectedOptions, // Ensure you include the selected resource types
     };
 
-    onSubmit(newSubmission); 
+    onSubmit(newSubmission);
     message.success("Resource added successfully!");
-    console.log("gehfvh vd vsvbh");
-     
-    // Clear input fields
-    form.resetFields(); 
-  
+    form.resetFields(); // Clear input fields after submission
   };
 
   return (
     <div className='add-container'>
-      <h1>Add Resources</h1>
+      <h1>{initialValues ? 'Edit Resource' : 'Add Resources'}</h1>
       <div className='add-content'>
         <Form
           onFinish={handleSubmit}
           form={form}
           layout="vertical"
         >
-          {/* university  */}
-
-            <Form.Item
+          {/* University */}
+          <Form.Item
             label="University"
             name="university"
-            rules={[{ required: true, message: 'Please select the Univercity!' }]}
+            rules={[{ required: true, message: 'Please select the University!' }]}
           >
             <Select placeholder="Select University" value={university} onChange={setUniversity}>
-            <Option value="RGPV">Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)</Option>
-            <Option value="DAVV">Devi Ahilya Vishwavidyalaya (DAVV)</Option>
-            <Option value="IITD">Indian Institute of Technology Delhi (IITD)</Option>
-            <Option value="IITB">Indian Institute of Technology Bombay (IITB)</Option>
-            <Option value="IIMB">Indian Institute of Management Bangalore (IIMB)</Option>
-            <Option value="DU">University of Delhi (DU)</Option>
-            <Option value="JNU">Jawaharlal Nehru University (JNU)</Option>
-            <Option value="XYZ">XYZ University</Option>
+              <Option value="RGPV">Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV)</Option>
+              <Option value="DAVV">Devi Ahilya Vishwavidyalaya (DAVV)</Option>
+              <Option value="IITD">Indian Institute of Technology Delhi (IITD)</Option>
+              <Option value="IITB">Indian Institute of Technology Bombay (IITB)</Option>
+              <Option value="IIMB">Indian Institute of Management Bangalore (IIMB)</Option>
+              <Option value="DU">University of Delhi (DU)</Option>
+              <Option value="JNU">Jawaharlal Nehru University (JNU)</Option>
+              <Option value="XYZ">XYZ University</Option>
             </Select>
           </Form.Item>
 
-          {/* Branch  */}
-
-           <Form.Item
+          {/* Branch */}
+          <Form.Item
             label="Branch"
             name="branch"
-            rules={[{ required: true, message: 'Please select the semester!' }]}
+            rules={[{ required: true, message: 'Please select the branch!' }]}
           >
             <Select placeholder="Select Branch" value={branch} onChange={setBranch}>
-            <Option value="">Select a Branch</Option>
-            <Option value="EC">Electronics and Communication</Option>
-            <Option value="CS">Computer Science</Option>
-            <Option value="ME">Mechanical Engineering</Option>
-            <Option value="CE">Civil Engineering</Option>
-            <Option value="IT">Information Technology</Option>
-            <Option value="EE">Electrical Engineering</Option>
-            <Option value="BT">Biotechnology</Option>
-            <Option value="AE">Aerospace Engineering</Option>
+              <Option value="EC">Electronics and Communication</Option>
+              <Option value="CS">Computer Science</Option>
+              <Option value="ME">Mechanical Engineering</Option>
+              <Option value="CE">Civil Engineering</Option>
+              <Option value="IT">Information Technology</Option>
+              <Option value="EE">Electrical Engineering</Option>
+              <Option value="BT">Biotechnology</Option>
+              <Option value="AE">Aerospace Engineering</Option>
             </Select>
           </Form.Item>
 
-              {/* semester  */}
-
+          {/* Semester */}
           <Form.Item
             label="Semester"
             name="semester"
             rules={[{ required: true, message: 'Please select the semester!' }]}
           >
-            <Select placeholder="Select Semester"  value={semester} onChange={setSemester}>
-            <Option value="1st Semester">1st Semester</Option>
-            <Option value="2nd Semester">2nd Semester</Option>
-            <Option value="3rd Semester">3rd Semester</Option>
-            <Option value="4th Semester">4th Semester</Option>
-            <Option value="5th Semester">5th Semester</Option>
-            <Option value="6th Semester">6th Semester</Option>
-            <Option value="7th Semester">7th Semester</Option>
-            <Option value="8th Semester">8th Semester</Option>
+            <Select placeholder="Select Semester" value={semester} onChange={setSemester}>
+              <Option value="1st Semester">1st Semester</Option>
+              <Option value="2nd Semester">2nd Semester</Option>
+              <Option value="3rd Semester">3rd Semester</Option>
+              <Option value="4th Semester">4th Semester</Option>
+              <Option value="5th Semester">5th Semester</Option>
+              <Option value="6th Semester">6th Semester</Option>
+              <Option value="7th Semester">7th Semester</Option>
+              <Option value="8th Semester">8th Semester</Option>
             </Select>
           </Form.Item>
 
-         {/* subject  */}
-
+          {/* Subject */}
           <Form.Item
             label="Subject"
             name="subject"
             rules={[{ required: true, message: 'Please select the subject!' }]}
           >
-            <Select placeholder="Select Subject"  value={subject} onChange={setSubject}>
-            <Option value="Data Structures">Data Structures</Option>
-            <Option value="Algorithms">Algorithms</Option>
-            <Option value="Operating Systems">Operating Systems</Option>
-            <Option value="Database Systems">Database Systems</Option>
-            <Option value="Computer Networks">Computer Networks</Option>
-            <Option value="Software Engineering">Software Engineering</Option>
-            <Option value="Machine Learning">Machine Learning</Option>
-            <Option value="Artificial Intelligence">Artificial Intelligence</Option>
+            <Select placeholder="Select Subject" value={subject} onChange={setSubject}>
+              <Option value="Data Structures">Data Structures</Option>
+              <Option value="Algorithms">Algorithms</Option>
+              <Option value="Operating Systems">Operating Systems</Option>
+              <Option value="Database Systems">Database Systems</Option>
+              <Option value="Computer Networks">Computer Networks</Option>
+              <Option value="Software Engineering">Software Engineering</Option>
+              <Option value="Machine Learning">Machine Learning</Option>
+              <Option value="Artificial Intelligence">Artificial Intelligence</Option>
             </Select>
           </Form.Item>
- 
-         {/* Resource type checkbox  */}
 
+          {/* Resource Type Checkbox */}
           <Form.Item
             label="Resource Type"
             name="resourceType"
@@ -190,98 +202,105 @@ const AddResource = ({ onClose,onSubmit }) => {
               <Checkbox value="Video">Video</Checkbox>
             </Checkbox.Group>
           </Form.Item>
-         
-         {/* pyq  */}
 
+          {/* PYQ */}
           {selectedOptions.includes("PYQ") && (
             <>
-            <Form.Item
+              <Form.Item
                 label="PYQ Title"
                 name="pyqtitle"
                 rules={[{ required: true, message: 'Please provide the PYQ Title!' }]}
               >
-                <Input placeholder="Enter Notes Title" value={title}  onChange={(e) => setTitle(e.target.value)}  />
+                <Input placeholder="Enter Notes Title" value={title} onChange={(e) => setTitle(e.target.value)} />
               </Form.Item>
               <Form.Item
                 label="Upload PYQ PDF"
                 name="pyqFile"
                 rules={[{ required: true, message: 'Please upload the PYQ PDF!' }]}
               >
-               <Upload  ref={fileInputRef}
-                onChange={handleFileChange} beforeUpload={() => false}>
-               <Button icon={<UploadOutlined />}>Click to Upload</Button>
-               </Upload>
+                <Upload
+                  onChange={handleFileChange}
+                  beforeUpload={() => false}
+                  accept="application/pdf"
+                  
+                >
+                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                </Upload>
               </Form.Item>
             </>
           )}
 
-           {/* notes  */} 
-
-          {selectedOptions.includes("Notes") && (    
+          {/* Notes */}
+          {selectedOptions.includes("Notes") && (
             <>
               <Form.Item
                 label="Notes Title"
                 name="notestitle"
-                rules={[{ required: true, message: 'Please provide the notes Title !' }]}
+                rules={[{ required: true, message: 'Please provide the Notes Title!' }]}
               >
-                <Input placeholder="Enter Notes Title"  value={noteTitle}  onChange={(e) => setNoteTitle(e.target.value)}/>
+                <Input placeholder="Enter Notes Title" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} />
               </Form.Item>
-
               <Form.Item
                 label="Upload Notes PDF"
-                name="notesFile"
-                rules={[{ required: true, message: 'Please upload the notes PDF!' }]}
+                name="noteFile"
+                rules={[{ required: true, message: 'Please upload the Notes PDF!' }]}
               >
-                <Upload ref={fileInputRefs} onChange={handleFileNoteChanges} beforeUpload={() => false}>
-                  <Button icon={<UploadOutlined />}>Click to Upload PDF</Button>
+                <Upload
+                  onChange={handleFileNoteChanges}
+                  beforeUpload={() => false}
+                  accept="application/pdf"
+                >
+                  <Button icon={<UploadOutlined />}>Click to Upload</Button>
                 </Upload>
               </Form.Item>
             </>
           )}
 
-          {/* Video  */}
-
-          {selectedOptions.includes('Video') && (
+          {/* Video */}
+          {selectedOptions.includes("Video") && (
             <>
               <Form.Item
                 label="Video Title"
                 name="videoTitle"
-                rules={[{ required: true, message: 'Please provide the video title!' }]}
+                rules={[{ required: true, message: 'Please provide the Video Title!' }]}
               >
-                <Input placeholder="Enter Video Title" value={videoTitle}  onChange={(e) => setVideoTitle(e.target.value)} />
+                <Input placeholder="Enter Video Title" value={videoTitle} onChange={(e) => setVideoTitle(e.target.value)} />
               </Form.Item>
-
               <Form.Item
                 label="Video Description"
                 name="videoDescription"
-                rules={[{ required: true, message: 'Please provide the video description!' }]}
+                rules={[{ required: true, message: 'Please provide a description for the video!' }]}
               >
-                <Input placeholder="Enter Video Description"  value={videoDes}  onChange={(e) => setVideoDes(e.target.value)}  />
+                <Input.TextArea placeholder="Enter Video Description" value={videoDes} onChange={(e) => setVideoDes(e.target.value)} />
               </Form.Item>
-
               <Form.Item
-                label="YouTube Video Link"
+                label="Video Link"
                 name="videoLink"
-                rules={[{ required: true, message: 'Please provide the YouTube video link!' }]}
+                rules={[{ required: true, message: 'Please provide the Video Link!' }]}
               >
-                <Input placeholder="Enter YouTube Video Link" value={videoLink}  onChange={(e) => setVideoLink(e.target.value)} />
+                <Input placeholder="Enter Video Link" value={videoLink} onChange={(e) => setVideoLink(e.target.value)} />
               </Form.Item>
-
               <Form.Item
-                label="Upload Thumbnail for Video"
-                name="videoThumbnail"
-                rules={[{ required: true, message: 'Please upload the video thumbnail!' }]}
+                label="Thumbnail Image"
+                name="thumbnail"
               >
-                <Upload ref={fileInputRefImage} beforeUpload={() => false} onChange={handleThumbnailChange}>
-                  <Button icon={<UploadOutlined />}>Click to Upload Thumbnail</Button>
+                <Upload
+                  beforeUpload={() => false}
+                  onChange={handleThumbnailChange}
+                >
+                  <Button icon={<UploadOutlined />}>Upload Thumbnail</Button>
                 </Upload>
+                {thumbnailPreview && <img src={thumbnailPreview} alt="Thumbnail" style={{ width: '100px', height: '100px' }} />}
               </Form.Item>
             </>
           )}
 
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Submit
+              {initialValues ? 'Update Resource' : 'Add Resource'}
+            </Button>
+            <Button onClick={onClose} style={{ marginLeft: '8px' }}>
+              Cancel
             </Button>
           </Form.Item>
         </Form>
