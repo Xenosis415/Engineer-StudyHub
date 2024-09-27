@@ -1,34 +1,34 @@
-@keyframes gradientAnimation {
+/* @keyframes gradientAnimation {
   0% {
     background: linear-gradient(135deg,
         #4a90e2,
         #50e3c2);
-    /* Blue to Green Gradient */
+
   }
 
   50% {
     background: linear-gradient(135deg,
         #50e3c2,
         #4a90e2);
-    /* Green to Blue Gradient */
+  
   }
 
   100% {
     background: linear-gradient(135deg,
         #4a90e2,
         #50e3c2);
-    /* Blue to Green Gradient */
+   
   }
-}
+} */
 
 .job-portal {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
-  background: linear-gradient(135deg, #4a90e2, #50e3c2);
+  /* background: linear-gradient(135deg, #4a90e2, #50e3c2); */
   /* Initial Gradient */
   background-size: 200% 200%;
-  animation: gradientAnimation 10s ease infinite;
+  /* animation: gradientAnimation 10s ease infinite; */
   /* Animation Properties */
   position: relative;
 }
@@ -85,7 +85,7 @@
   bottom: -10px;
   width: 100%;
   height: 5px;
-  background: #1677ff;
+  /* background: #1677ff; */
   transform: translateX(-50%);
   transition: width 0.3s ease;
 }
@@ -222,7 +222,7 @@
 
 .explore-button {
   margin-block-start: 20px;
-  background-color: #1677ff;
+  /* background-color: #1677ff; */
   color: white;
   border-radius: 5px;
   padding: 10px 20px;
@@ -247,4 +247,13 @@
   padding: 10px;
   font-size: 14px;
   
+}
+.head-sty {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  padding-top: 20px;
+  color: white;
+  text-align: center;
+
 }
