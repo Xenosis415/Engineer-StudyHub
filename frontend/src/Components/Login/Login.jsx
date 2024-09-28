@@ -23,11 +23,14 @@ const LoginPage = () => {
     setLoading(true);
     try {
       // Make the POST request to the backend
-      const response = await axios.post("http://localhost:5000/api/login", {
+      const response = await axios.post("http://localhost:5000/api/v1/user/login", {
+     
+        
         email: values.email,
         password: values.password,
         role: values.role,
       });
+      console.log(response);
       // Store the JWT token
       localStorage.setItem("token", response.data.token);
       // Notify the user of success
@@ -83,7 +86,10 @@ const LoginPage = () => {
             <Form.Item
               name="email"
               label="Email address"
-              rules={[{ required: true, message: "Please input your email!" }]}
+               rules={[
+    { type: "email", message: "Please enter a valid email address!" },
+    { required: true, message: "Please input your email!" }
+  ]}
             >
               <Input size="large" />
             </Form.Item>

@@ -36,10 +36,8 @@
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
-    background: linear-gradient(135deg, #4a90e2, #50e3c2); 
     background-size: 200% 200%;
-    background-color: #E6F7F9;
-    animation: gradientAnimation 10s ease infinite; /* Animation Properties */
+  background-color: rgb(249, 248, 255);
     position: relative; 
     margin-top: 45px;
   }
