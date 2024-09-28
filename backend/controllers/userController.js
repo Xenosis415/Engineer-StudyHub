@@ -1,6 +1,6 @@
-// controllers/userController.js
 import bcrypt from "bcrypt";
-import User from "../models/User.js";
+// import User from "../models/User.js";
+import User from "../models/register.js";
 
 export const registerUser = async (req, res) => {
     const { firstName, lastName, email, password, role, companyDetails } = req.body;
@@ -22,7 +22,8 @@ export const registerUser = async (req, res) => {
             email,
             password: hashedPassword,
             role,
-            ...(role === "company" && { companyDetails }),
+            companyDetails,
+            // ...(role === "company" && { companyDetails }),
         });
 
         await newUser.save();
