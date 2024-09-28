@@ -172,7 +172,7 @@ const JobDetails = () => {
             // logo: require("../../assets/images/experienced.png"),
             buttonColor: '#FFD700'
         },
-        // ... (other experienced jobs)
+       
     ];
     const InternshipJobCards = [
         {
@@ -186,7 +186,7 @@ const JobDetails = () => {
             // logo: require("../../assets/images/internship.png"),
             buttonColor: '#FF69B4'
         },
-        // ... (other internships)
+        
     ];
 
     const job = FeaturedJobCards.find(job => job.id === parseInt(id));
@@ -269,14 +269,16 @@ const JobDetails = () => {
                             <h2>Freshers Jobs</h2>
                             <div className="job-grid">
                                 {FreshersJobCards.map((job) => (
-                                    <Card key={job.id} style={{ margin: '10px' }}>
-                                        <img src={job.logo} alt={`${job.company} logo`} style={{ width: '100px' }} />
-                                        <h3>{job.title}</h3>
+                                    <Card key={job.id} style={{ margin: '10px', padding: '10px' }}>
+                                        <div className="job-info">
+                                            <img src={job.logo} alt={`${job.company} logo`} style={{ width: '100px' }} />
+                                            <h3>{job.title}</h3>
+                                        </div>
                                         <div class="job-buttons">
-    <button class="btn">Apply Now</button>
-    <button class="btn">Referrals</button>
-    <button class="btn">View Details</button>
-</div>
+                                            <button class="btn">Apply Now</button>
+                                            <button class="btn">Referrals</button>
+                                            <button class="btn">View Details</button>
+                                        </div>
                                         <p>Package: {job.package}</p>
                                         <p>Location: {job.location}</p>
                                         <p>Company: {job.company}</p>
@@ -287,14 +289,7 @@ const JobDetails = () => {
                                                 <p style={{ margin: 0 }}>Start Date: <strong>{job.startDate}</strong></p>
                                                 <p style={{ margin: 0 }}>Experience: <strong>{job.experience}</strong></p>
                                             </div>
-                                            <div className="applicant-card">
-                                                <div className="applicant-content">
-                                                    <h2>100+ Applicants</h2>
-                                                    <p>
-                                                        Apply by 19 October 2024 . Posted 1d ago
-                                                    </p>
-                                                </div>
-                                            </div>
+                                           <p>A platform to learn in community, explore campuses & get placed in dream companies</p>
 
                                         </div>
 
