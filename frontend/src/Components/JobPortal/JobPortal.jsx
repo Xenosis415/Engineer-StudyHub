@@ -3,6 +3,7 @@ import { Input, Button, Card } from "antd";
 import "./JobPortal.css"; // Ensure this CSS file includes the styles below
 import FeaturedJobs from "./Featuredjobs";
 import { Link, Outlet, Route, useNavigate } from "react-router-dom";
+import { Color } from "antd/es/color-picker";
 
 const { Search } = Input;
 
@@ -73,13 +74,21 @@ function JobPortal() {
             Are you looking for the perfect job or ideal candidates? Find your
             dream job with thousands of job postings across industries.
           </p>
+
+
+
           <div className="search-bar">
             <Search
               placeholder="Search for jobs or candidates"
               onSearch={onSearch}
               enterButton
+              className="custom-search-input"
             />
           </div>
+
+
+
+
         </div>
       </header>
       <main className="content-sections">
@@ -90,17 +99,25 @@ function JobPortal() {
             cover={<img alt={card.title} src={card.img} />}
             hoverable
           >
-            <Card.Meta title={card.title} description={card.description} />
+
+
+            <div className="description">
+              <Card.Meta className="card-meta" title={card.title} description={card.description} style={{ Color: "red" }} />
+            </div>
             <div className="card-stats">
               {card.stats.map((stat, idx) => (
                 <div key={idx} className="stat">
                   <h3>{stat.number}</h3>
                   <p>{stat.label}</p>
+
                 </div>
               ))}
             </div>
+
+
             <Button
               type="primary"
+              className="explore-button"
               onClick={() => {
                 //<Route path="JobListing" element={<JobListing />} />;
                 navigate("/JobListing");
@@ -112,7 +129,7 @@ function JobPortal() {
         ))}
       </main>
       <div className="thread-animation"></div>
-      <FeaturedJobs/>
+      <FeaturedJobs />
     </div>
   );
 }

@@ -26,7 +26,7 @@ const RegisterPage = () => {
     setLoading(true);
     try {
       // Make the POST request to the backend
-      await axios.post("http://localhost:5000/api/signup", {
+      await axios.post("http://localhost:5000/api/v1/user/register", {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
