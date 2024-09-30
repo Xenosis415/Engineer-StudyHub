@@ -1,35 +1,7 @@
-/* @keyframes gradientAnimation {
-  0% {
-    background: linear-gradient(135deg,
-        #4a90e2,
-        #50e3c2);
-
-  }
-
-  50% {
-    background: linear-gradient(135deg,
-        #50e3c2,
-        #4a90e2);
-  
-  }
-
-  100% {
-    background: linear-gradient(135deg,
-        #4a90e2,
-        #50e3c2);
-   
-  }
-} */
-
 .job-portal {
   font-family: Arial, sans-serif;
   text-align: center;
   padding: 20px;
-  /* background: linear-gradient(135deg, #4a90e2, #50e3c2); */
-  /* Initial Gradient */
-  background-size: 200% 200%;
-  /* animation: gradientAnimation 10s ease infinite; */
-  /* Animation Properties */
   position: relative;
 }
 
@@ -125,8 +97,8 @@
   padding: 10px 15px;
   font-size: 16px;
   border: 2px solid #e0e0e0;
-  height: 44px; 
-  flex-grow: 1; 
+  height: 44px;
+  flex-grow: 1;
 }
 
 .custom-search-input .ant-input:focus {
@@ -139,7 +111,7 @@
   border: none;
   border-radius: 0 25px 25px 0;
   height: 44px;
-  padding: 0 20px; 
+  padding: 0 20px;
   font-size: 16px;
   color: white;
   display: flex;
@@ -151,7 +123,6 @@
   background: linear-gradient(135deg, #0073e6, #005bb5);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
 
 .content-sections {
   display: flex;
@@ -222,38 +193,27 @@
 
 .explore-button {
   margin-block-start: 20px;
-  /* background-color: #1677ff; */
   color: white;
   border-radius: 5px;
   padding: 10px 20px;
+  border: none;
 }
-
-/* .description {
-  max-height: 4em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  height: 4em;
-} */
 
 .description {
   height: 8em;
   overflow: hidden;
   font-weight: bold;
-  
- 
 }
 
 .card-meta {
   padding: 10px;
   font-size: 14px;
-  
 }
 .head-sty {
   display: flex;
-  justify-content: center;  
-  align-items: center;      
+  justify-content: center;
+  align-items: center;
   padding-top: 20px;
   color: white;
   text-align: center;
-
 }

@@ -94,7 +94,7 @@ const Dashboard = () => {
             boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
           }}
         >
-          <div className="head-sty" >
+          <div className="head-sty" style={{display:"flex", flexDirection:"column"}}>
             <h1 style={{color:"#553CDF", fontWeight:"700"}}>Admin Dashboard</h1>
             <h2 style={{justifyContent:"left",fontSize:"16px",color:"#000"}}>All Filter</h2>
           </div>

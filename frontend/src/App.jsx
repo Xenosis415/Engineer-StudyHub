@@ -9,6 +9,7 @@ import DeveloperPage from "./pages/DeveloperPage";
 import LearningMaterial from "./Components/Learning Material/LearningMaterial";
 import RegisterPage from "./pages/RegistrationPage";
 import JobDetails from "./Components/JobPortal/JobDetails";
+import ApplyAndKnowMore from "./Components/JobPortal/ApplyAndKnowMore";
 import Dashboardpage from "./pages/Dashboardpage";
 
 import AboutUsComponent from "./Components/AboutUs/AboutUsComponent";
@@ -28,6 +29,7 @@ function App() {
             <Route path="JobPortal" element={<JobPortalPage />} />
             <Route path="DevelopersHub" element={<DeveloperPage />} />
             <Route path="job/:id" element={<JobDetails />} />
+            <Route path="job/:id/applynowandknowmore" element={<ApplyAndKnowMore />} />
             <Route path="AboutUs" element={<AboutUsComponent />} />
             <Route path="ContactUs" element={<ContactUs />} />
             <Route path="*" element={<JobPortalPage />} />

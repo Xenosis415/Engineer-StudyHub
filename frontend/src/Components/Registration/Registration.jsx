@@ -16,7 +16,7 @@ const { Title } = Typography;
 const { Option } = Select;
 
 const RegisterPage = () => {
-  const [currentStep, setCurrentStep] = useState(1); // State to track form step
+  const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false); // Track if form is submitted
   const [role, setRole] = useState(""); // State for selected role
