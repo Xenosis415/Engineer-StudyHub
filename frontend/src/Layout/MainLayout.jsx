@@ -46,7 +46,7 @@ const MainLayout = () => {
       key: "2",
       label: (
         <Link to="/learning-material" className="menu-link">
-          Learning Material
+          Engineer’s Library
         </Link>
       ),
     },
@@ -54,7 +54,7 @@ const MainLayout = () => {
       key: "3",
       label: (
         <Link to="/JobPortal" className="menu-link">
-          Job Portal
+          Engineer's Career Hub
         </Link>
       ),
     },
@@ -62,7 +62,7 @@ const MainLayout = () => {
       key: "4",
       label: (
         <Link to="/DevelopersHub" className="menu-link">
-          Developers Hub
+          Developement Hub
         </Link>
       ),
     },
@@ -70,7 +70,7 @@ const MainLayout = () => {
       key: "5",
       label: (
         <Link to="/Dashboard" className="menu-link">
-          Dashboard
+          Admin Dashboard
         </Link>
       ),
     },

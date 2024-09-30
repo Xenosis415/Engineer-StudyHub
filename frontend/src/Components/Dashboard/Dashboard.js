@@ -1,4 +1,4 @@
-import { Button, Modal, Input, theme, Card, Typography, Image } from "antd";
+import { Button, Modal, Input, Card, Image } from "antd";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import React, { useState } from "react";
 import AddResource from "./AddResource";
@@ -9,7 +9,6 @@ import "antd/dist/reset.css";
 const { Option } = Select;
 const { Sider } = Layout;
 const { Search } = Input;
-const { Title } = Typography;
 
 const tabList = [
   { key: "tab1", tab: "PYQ" },
