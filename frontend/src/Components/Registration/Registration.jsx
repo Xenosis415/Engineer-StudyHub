@@ -16,7 +16,7 @@ const { Title } = Typography;
 const { Option } = Select;
 
 const RegisterPage = () => {
-  const [currentStep, setCurrentStep] = useState(1); // State to track form step
+  const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false); // Track if form is submitted
   const [role, setRole] = useState(""); // State for selected role
@@ -24,6 +24,7 @@ const RegisterPage = () => {
 
   const onFinish = async (values) => {
     setLoading(true);
+    console.log(values);
     try {
       // Make the POST request to the backend
       await axios.post("http://localhost:5000/api/v1/user/register", {

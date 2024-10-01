@@ -181,6 +181,14 @@ const JobDetails = () => {
   const job = FeaturedJobCards.find((job) => job.id === parseInt(id));
   if (!job) return <div>Job not found</div>;
 
+
+  const handleApplyNow = () => {
+    navigate(`applynowandknowmore`, { state: { view: 'apply' } }); // Pass state
+  };
+  
+  const handleKnowMore = () => {
+    navigate(`applynowandknowmore`, { state: { view: 'know-more' } }); // Pass state
+  };
   return (
     <Layout>
       <Sider
@@ -314,8 +322,8 @@ const JobDetails = () => {
                       </div>
                     </div>
                     <div class="job-buttons">
-                      <Button type="primary">Apply</Button>
-                      <Button>Know More</Button>
+                      <Button type="primary" onClick={handleApplyNow}>Apply</Button>
+                      <Button onClick={handleKnowMore}>Know More</Button>
                     </div>
                   </Card>
                 ))}
