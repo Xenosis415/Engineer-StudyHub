@@ -7,6 +7,7 @@ import connectDB from "./utils/db.js";
 import companyRoute from "./routes/company.route.js";
 import jobRoute from "./routes/job.route.js";
 import applicationRoute from "./routes/application.route.js";
+import addResourceRoute from "./routes/resource.routes.js";
 
 //  const userRoute= require('./routes/userRoutes.js')
 import userRoute from "./routes/userRoutes.js";
@@ -33,6 +34,7 @@ app.use("/api/v1/user", userRoute);
 app.use("/api/v1/company", companyRoute);
 app.use("/api/v1/job", jobRoute);
 app.use("/api/v1/application", applicationRoute);
+app.use("/api/v1/resource",addResourceRoute );
 
 app.use((err, req, res, next) => {
   console.error(err.stack); // Log the error details to the console
