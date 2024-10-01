@@ -3,6 +3,7 @@ import { Input, Button, Card } from "antd";
 import "./JobPortal.css"; // Ensure this CSS file includes the styles below
 import FeaturedJobs from "./Featuredjobs";
 import { Link, Outlet, Route, useNavigate } from "react-router-dom";
+import EventCards from "./EventCards";
 
 const { Search } = Input;
 
@@ -57,7 +58,10 @@ function JobPortal() {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="job-portal" style={{backgroundColor:"#f0f2f5", marginBottom:"0px"}}>
+      <div
+        className="job-portal"
+        style={{ backgroundColor: "#f0f2f5", marginBottom: "0px" }}
+      >
         <div className="background-logos">
           {/* Add paths to your company logos */}
           <img src="logo1.png" alt="Company Logo 1" className="logo" />
@@ -125,8 +129,9 @@ function JobPortal() {
         </main>
         <div className="thread-animation"></div>
       </div>
-      <div style={{marginTop:"0px"}}>
+      <div style={{ marginTop: "0px" }}>
         <FeaturedJobs />
+        <EventCards />
       </div>
     </div>
   );
