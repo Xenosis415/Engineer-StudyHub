@@ -4,6 +4,7 @@ import "./JobPortal.css"; // Ensure this CSS file includes the styles below
 import FeaturedJobs from "./Featuredjobs";
 import { Link, Outlet, Route, useNavigate } from "react-router-dom";
 import EventCards from "./EventCards";
+import Opportunity from "./Opportunity";
 
 const { Search } = Input;
 
@@ -132,7 +133,9 @@ function JobPortal() {
       <div style={{ marginTop: "0px" }}>
         <FeaturedJobs />
         <EventCards />
+        
       </div>
+      <Opportunity/>
     </div>
   );
 }

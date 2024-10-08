@@ -1,0 +1,22 @@
+.ant-card-body{
+    padding: 0px;
+}
+.logo-img{
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+}
+p{
+    margin-bottom: 0;
+    padding: 0;
+}
+.new-tag{
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-left: 5px;;
+}
+.new-tags{
+    position: absolute;
+    top: 190px;
+}

@@ -13,6 +13,7 @@ import ApplyAndKnowMore from "./Components/JobPortal/ApplyAndKnowMore";
 import Dashboardpage from "./pages/Dashboardpage";
 import AboutUsComponent from "./Components/AboutUs/AboutUsComponent";
 import ContactUs from "./Components/ContactUs/ContactUs";
+import OpportunityDetail from "./Components/JobPortal/OpportunityDetail";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="JobPortal" element={<JobPortalPage />} />
             <Route path="DevelopersHub" element={<DeveloperPage />} />
             <Route path="job/:id" element={<JobDetails />} />
+            <Route path="/opportunity/:id" element={<OpportunityDetail />} />
             <Route path="job/:id/applynowandknowmore" element={<ApplyAndKnowMore />} />
             <Route path="AboutUs" element={<AboutUsComponent />} />
             <Route path="ContactUs" element={<ContactUs />} />
